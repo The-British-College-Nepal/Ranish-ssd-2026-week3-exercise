@@ -2,50 +2,103 @@ package stats;
 
 import java.util.Arrays;
 
-// TODO [Step 3.1]: Add class-level Javadoc with @author tag
+/**
+ * Stores integers and calculates basic statistics on them.
+ *
+ * @author Sudan Pudasaini
+ */
 public class Stats {
 
     private int[] numbers;
     private int count;
 
-    // TODO [Step 3.2]: Add Javadoc with @param capacity
+    /**
+     * Creates a Stats object with room for the given number of values.
+     *
+     * @param capacity the maximum number of values
+     */
     public Stats(int capacity) {
         numbers = new int[capacity];
     }
 
-    // TODO [Step 3.3]: Add Javadoc with @param value
+    /**
+     * Adds a value.
+     *
+     * @param value the value to add
+     */
     public void addValue(int value) {
         numbers[count] = value;
         count++;
     }
 
-    // TODO [Step 3.4]: Add Javadoc with @return
+    /**
+     * Gets the number of values added.
+     *
+     * @return the count
+     */
     public int getCount() {
         return this.count;
     }
 
-    // TODO [Step 2.1]: Iterate through 1 to count (NOT numbers.length) to find highest value
-    // TODO [Step 3.5]: Throw IllegalStateException if count == 0 ("No values have been added")
+    /**
+     * Gets the largest value.
+     *
+     * @return the maximum value
+     */
     public int getMax() {
-        return 0;
+        if (count == 0) {
+            throw new IllegalStateException("No values have been added");
+        }
+        int max = numbers[0];
+        for (int i = 1; i < count; i++) {
+            if (numbers[i] > max) {
+                max = numbers[i];
+            }
+        }
+        return max;
     }
 
-    // TODO [Step 2.2]: Iterate through 1 to count (NOT numbers.length) to find lowest value
-    // TODO [Step 3.6]: Throw IllegalStateException if count == 0 ("No values have been added")
+    /**
+     * Gets the smallest value.
+     *
+     * @return the minimum value
+     */
     public int getMin() {
-        return 0;
+        if (count == 0) {
+            throw new IllegalStateException("No values have been added");
+        }
+        int min = numbers[0];
+        for (int i = 1; i < count; i++) {
+            if (numbers[i] < min) {
+                min = numbers[i];
+            }
+        }
+        return min;
     }
 
-    // TODO [Step 2.3]: Sum all added values (loop up to count, NOT numbers.length)
-    // TODO [Step 3.7]: Add Javadoc with @return
+    /**
+     * Gets the total of all values.
+     *
+     * @return the total
+     */
     public int getTotal() {
-        return 0;
+        int total = 0;
+        for (int i = 0; i < count; i++) {
+            total += numbers[i];
+        }
+        return total;
     }
 
-    // TODO [Step 2.4]: Divide total by count (NOT numbers.length) as a double
-    // TODO [Step 3.8]: Throw IllegalStateException if count == 0 ("No values have been added")
+    /**
+     * Gets the average of all values.
+     *
+     * @return the average
+     */
     public double getAverage() {
-        return 0.0;
+        if (count == 0) {
+            throw new IllegalStateException("No values have been added");
+        }
+        return getTotal() / (double) count;
     }
 
     @Override
