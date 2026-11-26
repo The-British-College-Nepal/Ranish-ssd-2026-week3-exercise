@@ -3,7 +3,7 @@ package stats;
 import java.util.Arrays;
 
 /**
- * Stores integers and calculates basic statistics on them.
+ * Calculates statistical metrics from a dynamic collection of integer values.
  *
  * @author Sudan Pudasaini
  */
@@ -13,18 +13,18 @@ public class Stats {
     private int count;
 
     /**
-     * Creates a Stats object with room for the given number of values.
+     * Creates a Stats object that can hold a fixed number of values.
      *
-     * @param capacity the maximum number of values
+     * @param capacity the maximum size of the array
      */
     public Stats(int capacity) {
         numbers = new int[capacity];
     }
 
     /**
-     * Adds a value.
+     * Adds an integer to the collection.
      *
-     * @param value the value to add
+     * @param value the integer being appended
      */
     public void addValue(int value) {
         numbers[count] = value;
@@ -32,22 +32,23 @@ public class Stats {
     }
 
     /**
-     * Gets the number of values added.
+     * Gets the number of values added so far.
      *
-     * @return the count
+     * @return the number of values added
      */
     public int getCount() {
         return this.count;
     }
 
     /**
-     * Gets the largest value.
+     * Finds the largest value added.
      *
      * @return the maximum value
+     * @throws IllegalStateException if no values have been added
      */
     public int getMax() {
         if (count == 0) {
-            throw new IllegalStateException("No values have been added");
+            throw new IllegalStateException("No values have been added to calculate statistics.");
         }
         int max = numbers[0];
         for (int i = 1; i < count; i++) {
@@ -59,13 +60,14 @@ public class Stats {
     }
 
     /**
-     * Gets the smallest value.
+     * Finds the smallest value added.
      *
      * @return the minimum value
+     * @throws IllegalStateException if no values have been added
      */
     public int getMin() {
         if (count == 0) {
-            throw new IllegalStateException("No values have been added");
+            throw new IllegalStateException("No values have been added to calculate statistics.");
         }
         int min = numbers[0];
         for (int i = 1; i < count; i++) {
@@ -77,9 +79,9 @@ public class Stats {
     }
 
     /**
-     * Gets the total of all values.
+     * Adds up all the values.
      *
-     * @return the total
+     * @return the total of all values added
      */
     public int getTotal() {
         int total = 0;
@@ -90,13 +92,14 @@ public class Stats {
     }
 
     /**
-     * Gets the average of all values.
+     * Works out the average of all the values.
      *
-     * @return the average
+     * @return the average of the values added
+     * @throws IllegalStateException if no values have been added
      */
     public double getAverage() {
         if (count == 0) {
-            throw new IllegalStateException("No values have been added");
+            throw new IllegalStateException("No values have been added to calculate statistics.");
         }
         return getTotal() / (double) count;
     }
